@@ -30,10 +30,18 @@ class Confidential(Mail):
             def rot13(text):
                 return text.translate(
                     str.maketrans(
-                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-                        "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"))
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345abcdefghijklmnopqrstuvwxyz",
+                        "NOPQRSTUVWXYZABCDEFGHIJKLM09876nopqrstuvwxyzabcdefghijklm"))
 
             self._body = rot13(self._body)
+    def decrypt(self):
+            def rot13(text):
+                return text.translate(
+                    str.maketrans(
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234abcdefghijklmnopqrstuvwxyz",
+                        "NOPQRSTUVWXYZABCDEFGHIJKLM09876nopqrstuvwxyzabcdefghijklm"))
+            return rot13(self._body)
+
 
     # FA.5.c
     def show_email(self):
@@ -50,5 +58,5 @@ class Confidential(Mail):
             print(f"read     :{'Yes' if self.read else 'No'}")
             print(f"flag     :{'Yes' if self.flag else 'No'}")
             print("body:")
-            print(self.body)
+            print(self._body)
             print("-" * 40)

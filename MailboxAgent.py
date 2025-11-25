@@ -42,6 +42,7 @@ class MailboxAgent:
     #
     def get_email(self, m_id):
         """ """
+        m_id = str(m_id)
         for mail in self._mailbox:
             if mail.m_id == m_id:
                 return mail
@@ -95,20 +96,51 @@ class MailboxAgent:
     #
     def show_emails(self):
         """  details of personal email """
+        print(f"{'ID':<5} | {'From':<20} | {'To':<20} | {'Date':<10}  | {'Subject':<15} | {'Tag':<10} |  {'Read':<15} | {'Flag':<15}")
+        print("-" * 150)
         for mail in self._mailbox:
-            mail.show_email()
+            read_status = 'Yes' if mail.read else 'No'
+            flagged_status = 'Yes' if getattr(mail, 'flag', False) or getattr(mail, 'read', False) else 'No'
+            print(f"{mail.m_id:<5} | {mail.frm:<20} | {mail.to:20} | {mail.date:<10} | {mail.subject:<15} |  {mail.tag:<10} | {read_status:<15} | {flagged_status:<15}")
 
     # FB.2
     #
     def mv_email(self, m_id, tag):
         """  """
         mail = self.get_email(m_id)
-        if mail:
-            mail.tag = tag
-            print(f"Email {m_id} moved to folder '{tag}'.")
-            mail.show_email()
+        if not mail:
+            print(f"Email {m_id} not found.")
+            return
+
+        old_tag = mail.tag
+
+            #move to conf
+
+        if tag == 'conf' and old_tag != 'conf':
+            new_mail = Confidential(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, mail.body)
+
+            index = self._mailbox.index(mail)
+            self._mailbox[index] = new_mail
+            print(f"Email {m_id} moved to confidential files '{tag}'.")
+            new_mail.show_email()
+
+        elif old_tag == 'conf' and tag != 'conf':
+                #
+            decrypted_body = mail.decrypt_body() #
+
+            if tag == 'prsnl':
+                new_mail = Personal(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, decrypted_body)
+            else:
+                new_mail = Mail(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, decrypted_body)
+            index = self._mailbox.index(mail)
+            self._mailbox[index] = new_mail
+            print(f"Email {m_id} moved fromn confidentail files to '{tag}'.")
+            new_mail.show_email()
         else:
-            print(f"Email {m_id} not moved to folder '{tag}'.")
+                mail.tag = tag
+                print(f"Email {m_id} moved to folder '{tag}'.")
+                mail.show_email()
+
     # FB.3
     #
     def mark(self, m_id, m_type):
@@ -124,6 +156,12 @@ class MailboxAgent:
         else:
             print("invalid mark type.")
             return
+
+    def mark_all_as_read(self):
+        for mail in self._mailbox:
+            mail.read = True
+        print(f"All emails are marked as read.")
+
 
     # FB.4
     #
@@ -164,7 +202,7 @@ class MailboxAgent:
     def add_email(self, frm, to, date, subject, tag, body, m_id=None):
         """  """
         # code must generate unique m_id
-        next_id = len(self._mailbox) + 1 #make unique id
+        next_id = str (len(self._mailbox)) #make unique id
 
         match tag.lower():
             # FA.6

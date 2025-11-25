@@ -35,7 +35,7 @@ def gen_emails():
     """ generates list of email strings
         :rtype: list """
     msgs, msg_id = [], 0
-    for i in range(40):     # sent 40 email
+    for i in range(14):     # sent 40 email
         msg = ''
         for j in range(30): # to 30 destinations each
             msg += f"ID:{str(msg_id)}"+"\n"
@@ -63,8 +63,8 @@ def display_command_help(): # DO NOT MODIFY (used in loop function)
           'mrkf <m_id> | ',     # B.3 Mark email with given ID as Flagged then display that email
           'flt <frm> | ',       # A.4 Filter and display all emails from a given name/email address - e.g. flt email13
           'fnd <date> | ',      # B.4 Find and display all emails received on a given date - e.g. fnd 12/3/2025
-          'add <email>')        # A.5&6 and B.5&6 simulate send email by adding emails to the mailbox
-                                # example add prompts:
+          'add <email> | '      # A.5&6 and B.5&6 simulate send email by adding emails to the mailbox
+          'read all <readall>') # example add prompts:
                                 # add email1223@gre.ac.uk email723@gre.ac.uk 29/5/2025 subject99 conf %%Body99911. Isfeo afwco sxzmp.
                                 # add email142@gre.ac.uk email788@gre.ac.uk 29/5/2025 subject88 prsnl %%Body11445. Isfffffeo afffwco sxzmp.
                                 # add email116@gre.ac.uk email142@gre.ac.uk 29/5/2025 subject36 tag1 %%Body:Body68. Wods vmm tskgdrxzrk.
@@ -91,7 +91,7 @@ def loop(before_body=None):
                 # add email142@gre.ac.uk email788@gre.ac.uk 29/5/2025 subject88 prsnl %%Body11332. Isfffffeo sxzmp.
                 # add email116@gre.ac.uk email142@gre.ac.uk 29/5/2025 subject36 tag1 %%Body:Body68. Wods vmm tskgdrxzrk.
                 if len(args) < 6:
-                    print("Usage: add <frm> <to> <date> <subject> <tag> %%<body>")
+                    print("Usage: add <frm> <to> <date> <subject> <tag> <body>")
                 else:
                     frm, to, date, subject, tag = args[:5]
                     body_args = args[5:]
@@ -148,6 +148,9 @@ def loop(before_body=None):
                     mba.mark(args[0], 'read')
                 else:
                     print("Usage: mrkr <m_id>")
+
+            case 'readall':                  #oops
+                mba.mark_all_as_read()
 
             case 'mrkf':
                 # example command prompt:
