@@ -15,6 +15,7 @@
 from Mail import Mail
 from Confidential import Confidential
 from Personal import Personal
+import datetime
 
 class MailboxAgent:
     """<This is the documentation for MailboxAgent. Complete the docstring for this class."""
@@ -54,8 +55,18 @@ class MailboxAgent:
         mail = self.get_email(m_id)
         if mail:
             mail.tag = 'bin'
-            print(f"Email {m_id} moved to bin.")
+            mail._deletion_date = datetime.datetime.today()
+            print(f"Email {m_id} moved to bin on {mail._deletion_date}. ")
             mail.show_email()
+
+    def cleanup_bin(self):
+        today = datetime.datetime.today()
+        bin_emails = [mail for mail in self._mailbox if mail.tag == 'bin']
+
+        for mail in bin_emails:
+            if mail._deletion_date and ( today - mail._deletion_date).days >= 10:
+                self._mailbox.remove(mail)
+                print(f"Email {mail.m_id} will permanently removed from bin on {mail._deletion_date}. ")
 
     # FA.4
     #
