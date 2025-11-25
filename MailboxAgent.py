@@ -60,7 +60,7 @@ class MailboxAgent:
             print(f"Email {m_id} moved to bin on {mail._deletion_date.strftime('%y-%m-%d')} and will be deleted permanently after 10 days")
             mail.show_email()
 
-    def cleanup_bin(self):
+    def cleanup_bin(self):      #oops
         today = datetime.datetime.today()
         bin_emails = [mail for mail in self._mailbox if mail.tag == 'bin']
 
@@ -150,6 +150,7 @@ class MailboxAgent:
         if m_type == 'read':
             mail.read = True
             print(f"Email {m_id} marked as read.")
+
         elif m_type == 'flagged':
             mail.flagged = True
             print(f"Email {m_id} marked as flagged.")

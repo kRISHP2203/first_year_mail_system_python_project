@@ -35,7 +35,8 @@ class Personal(Mail):
         self._body = self._body.replace("Body", uid)
         # 3. Define 'words' by splitting the NEW body text
         words = self._body.split()
-        # 4. Calculate stats """
+        # 4. Calculate stat
+        s """
 
         uid = self._frm.split('@')[0]
 

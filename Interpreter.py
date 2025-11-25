@@ -158,7 +158,7 @@ def loop(before_body=None):
                 if len(args) == 1:
                     mba.mark(args[0], 'flagged')
                 else:
-                    print("Usage: mv <m_id> ")
+                    print("Usage: mrkf <m_id> ")
 
             case 'mv':                  # move email with given ID to folder in given tag
                 # example command prompt:
