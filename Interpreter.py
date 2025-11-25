@@ -16,6 +16,7 @@
 from MailboxAgent import *
 import random, string
 
+
 # gen_bdy Generates random text for the email body
 # DO NOT MODIFY
 def gen_bdy():
@@ -124,7 +125,7 @@ def loop(before_body=None):
                 # example command prompt:
                 # fnd 12/3/2025
                 if len(args) == 1:
-                    mba.filter(args[0])
+                    mba.find(args[0])
                 else:
                     print("Usage: fnd <date>")
             case 'get' :                # retrieve and display email Mail object given email ID

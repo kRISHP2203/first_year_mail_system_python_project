@@ -56,7 +56,7 @@ class MailboxAgent:
         if mail:
             mail.tag = 'bin'
             mail._deletion_date = datetime.datetime.today()
-            print(f"Email {m_id} moved to bin on {mail._deletion_date}. ")
+            print(f"Email {m_id} moved to bin on {mail._deletion_date.strftime('%y-%m-%d')} and will be deleted permanently after 10 days")
             mail.show_email()
 
     def cleanup_bin(self):
@@ -129,15 +129,20 @@ class MailboxAgent:
     #
     def find(self, date):
         """  """
+
+
         found_emails = []
 
+        date = date.strip()
+        #sdbvjhsb
         for mail in self._mailbox:
-            if mail.date == date:
+            mail_date = mail.date.strip()
+            if mail_date == date:
                 found_emails.append(mail)
-        print(f"Found {len(found_emails)} emails with '{date}':")
 
-        if len(found_emails) > 0:
-            print(f"{'ID':<5} | {'From':<20} | {'To':<20} | {'Date':<10} | {'Suject' :<15} | {'Tag':<10}")
+        print(f"Found {len(found_emails)} emails with date '{date}':")
+        if found_emails:
+            print(f"{'ID':<5} | {'From':<20} | {'To':<20} | {'Date':<10} | {'Subject' :<15} | {'Tag':<10}")
             print("-" * 90)
 
             for mail in found_emails:
@@ -145,6 +150,8 @@ class MailboxAgent:
 
             else:
                 print(f"No emails with date {date} found.")
+
+
     # FB.5
     #
     def sort_from(self):
