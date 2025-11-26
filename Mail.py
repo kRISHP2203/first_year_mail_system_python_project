@@ -1,7 +1,10 @@
 #################################################################################################
 ### COMP1811 - CW1 Outlook Simulator                                                          ###
-###            Mail Class                                                             ###
-###            <describe the purpose and overall functionality of the class defined here>     ###
+###            Mail Class                                                                     ###
+###            The mail class file defines, a base class representing an email messaging      ###
+###            system similar to outlook                                                      ###
+###            Th class provides core data (sender, (sender, receiver, subject, body, flags), ###
+###            and provides methods to access and diplay the information.                     ###
 ### Partner A:                                                                                ###
 ###            Parthilkumar Miteshbhai Patel, 001485972                                       ###
 ### Partner B:                                                                                ###
@@ -14,7 +17,7 @@
 class Mail:
     """ """
     # DO NOT CHANGE CLASS OR METHOD NAMES
-    def  __init__(self,m_id,frm,to,date,subject,tag,body):
+    def  __init__(self,m_id,frm,to,date,subject,tag,body):    #Create a new Mail object which is an oop concept: Encapsulation
         self._m_id = m_id
         self._frm = frm
         self._to = to
@@ -81,7 +84,7 @@ class Mail:
 
 # FEATURES A (Partner A)
     # FA.2
-    #
+    #show_email prints ull message detail for user display.
     def show_email(self):
         """  print all message detail for user display """
         print(f"m_id     :{self.m_id}")

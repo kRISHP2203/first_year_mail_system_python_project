@@ -2,8 +2,10 @@
 ### COMP1811 - CW1 Outlook Simulator                                                          ###
 ###            Personal Class                                                                 ###
 ###            The purpose of this personal email class is, that it inherits from the base    ###
-###            Mail class.   ###
-###  ###
+###            Mail class. Personal emails are a special type of email for this assignment.   ###
+###            They display sender information within the body and provide simple statistics  ###
+###            about the email content.                                                       ###
+###                                                                                           ###
 ### Partner B:                                                                                ###
 ###            Krish Thakorbhai Patel, 0001495242                                             ###
 #################################################################################################
@@ -15,8 +17,11 @@ from Mail import Mail
 
 # FB.5.a
 class Personal(Mail):
-    """ A personal mail that inherits from mail,
-    which automatically replaces the body with the sender uid,
+    """
+    [OOP CONCEPT: Inheritance] Inherits all attributes and behaviors from Mail.
+    This class represents a personal email which, upon creation, updates the body to include
+    sender info and adds basic statistics (word count, average word length, longest word).
+
     """
     # DO NOT CHANGE CLASS NAME OR METHOD NAMES/SIGNATURES
     # Add new method(s) as required in CW spec
@@ -35,10 +40,11 @@ class Personal(Mail):
         self._body = self._body.replace("Body", uid)
         # 3. Define 'words' by splitting the NEW body text
         words = self._body.split()
-        # 4. Calculate stat
-        s """
+        # 4. Calculate stats
 
+        """
 
+        # [OOP CONCEPT: Encapsulation] - Internal logic updates _body field.
         uid = self._frm.split('@')[0]
         self._body = self._body.replace("Body", uid)
 
@@ -61,4 +67,8 @@ class Personal(Mail):
             f"\n[Stats] Average length: {avg_length}"
             f"\n[Stats] Longest length: {longest_length}"
     )
-        self._body += stats_text    #
+        self._body += stats_text
+
+# - Personal Class name is CamelCase
+# - Function, variable names are snake_case and descriptive
+# - Private/internal fields use underscore (_body, _frm, etc.)

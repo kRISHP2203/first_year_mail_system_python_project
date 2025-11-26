@@ -1,7 +1,8 @@
 #################################################################################################
 ### COMP1811 - CW1 Outlook Simulator                                                          ###
 ###            Confidential Class                                                             ###
-###            <describe the purpose and overall functionality of the class defined here>     ###
+###            The confidential class, inherits from the Mail class. As Confidential emails   ###
+###            automatically encrypt and decrypt the email body using ROT13.                  ###
 ### Partner A:                                                                                ###
 ###            Parthilkumar Miteshbhai Patel, 001485972                                       ###
 #################################################################################################
@@ -13,7 +14,12 @@ from Mail import Mail
 
 # FA.5.a
 class Confidential(Mail):
-    """ """
+    """
+    [OOP CONCEPT: Inheritance] Inherits from the Mail class.
+    Confidential represents secure emails with an encrypted body.
+    The body is encrypted using ROT13 in the constructor and decrypted on demand.
+
+    """
     # DO NOT CHANGE CLASS NAME OR METHOD NAMES/SIGNATURES
     # Add new method(s) as required in CW spec
 
@@ -22,8 +28,14 @@ class Confidential(Mail):
             self.encrypt()
 
     # FA.5.b
-    #
+    """
+    Encrypts the internal body using ROT13.
+    Returns: None
+    [Learning Source]: Logic for mutation learnt via AI explanation.
+         
+    """
 
+    # [OOP CONCEPT: Encapsulation]
 
     def encrypt(self):
         def rot13(text):
@@ -33,6 +45,7 @@ class Confidential(Mail):
                         "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"))
 
         self._body = rot13(self._body)
+
 
 
     def decrypt(self):
@@ -45,6 +58,13 @@ class Confidential(Mail):
         return self.rot13(self._body)
 
     # FA.5.c
+    """
+    [OOP CONCEPT: Polymorphism] Overrides Mail.show_email to clarify encryption.
+    Prints out all email details, including encrypted body.
+    Returns: None
+    [Learning Source]: Print formatting based on coursework examples.
+        
+    """
     def show_email(self):
             """Overrides the base class show_email method to indicate the content is encrypted. """
 
@@ -61,3 +81,5 @@ class Confidential(Mail):
             print("body:")
             print(self._body)
             print("-" * 40)
+
+# Class name is CamelCase, method and variable names are snake_case, private variables with underscore

@@ -63,7 +63,8 @@ def display_command_help(): # DO NOT MODIFY (used in loop function)
           'flt <frm> | ',       # A.4 Filter and display all emails from a given name/email address - e.g. flt email13
           'fnd <date> | ',      # B.4 Find and display all emails received on a given date - e.g. fnd 12/3/2025
           'add <email> | '      # A.5&6 and B.5&6 simulate send email by adding emails to the mailbox
-          'read all <readall>') # example add prompts:
+          'read all <readall> |'
+          'sort <short_date)') # example add prompts:
                                 # add email1223@gre.ac.uk email723@gre.ac.uk 29/5/2025 subject99 conf %%Body99911. Isfeo afwco sxzmp.
                                 # add email142@gre.ac.uk email788@gre.ac.uk 29/5/2025 subject88 prsnl %%Body11445. Isfffffeo afffwco sxzmp.
                                 # add email116@gre.ac.uk email142@gre.ac.uk 29/5/2025 subject36 tag1 %%Body:Body68. Wods vmm tskgdrxzrk.
@@ -73,6 +74,11 @@ def display_command_help(): # DO NOT MODIFY (used in loop function)
 # - Replace 'pass' with the code necessary to call class/methods relevant for each command
 # - Completed as a group
 def loop(before_body=None):
+    """
+        Main loop to interact with the user in the command-line interface.
+        Executes required functions based on user commands.
+        [Learning Source]: Structure of CLI/main loop inspired by Python docs and AI suggestions.
+    """
     mba = MailboxAgent(gen_emails())    # mba is an instance of the MailboxAgent class DO NOT MODIFY
     display_command_help()              # simply display the interpreter command-line commands as help
     line = input('mba > ')              # displays a command-line prompter for users to enter command script
@@ -174,6 +180,10 @@ def loop(before_body=None):
                     mba.mv_email(args[0], args[1])
                 else:
                     print("Usage: mv <m_id> <tag> ")
+
+            case 'sort_date':
+                if len(args) == 1:
+                    mba.sort_date()
 
 
         line = input('mba > ')

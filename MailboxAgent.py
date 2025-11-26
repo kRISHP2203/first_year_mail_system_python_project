@@ -1,7 +1,9 @@
 #################################################################################################
 ### COMP1811 - CW1 Outlook Simulator                                                          ###
 ###            MailboxAgent Class                                                             ###
-###            <describe the purpose and overall functionality of the class defined here>     ###
+###            This file defines the mailboxagent class, which acts as the controller for all ###
+###            mailbox operation. Adding, removing and sorting emails through appropriate     ###
+###            methods. It upholds OOP concept by managing a private mailbox collection       ###
 ### Partner A:                                                                                ###
 ###            Parthilkumar Miteshbhai Patel, 001485972                                       ###
 ### Partner B:                                                                                ###
@@ -18,7 +20,13 @@ from Personal import Personal
 import datetime
 
 class MailboxAgent:
-    """<This is the documentation for MailboxAgent. Complete the docstring for this class."""
+    """
+    [OOP CONCEPT: Encapsulation]
+    Represents a user's mailbox and provides all email operations:
+    creation, deletion, marking, sorting, filtering, and more.
+    The underlying email list (_mailbox) is only accessed here.
+
+    """
     def __init__(self, email_data):                       # DO NOT CHANGE
         self._mailbox = self.__gen_mailbox(email_data)    # data structure containing Mail objects DO NOT CHANGE
 
@@ -39,9 +47,13 @@ class MailboxAgent:
 
 # FEATURES A (Partner A)
     # FA.1
-    #
+
     def get_email(self, m_id):
-        """ """
+        """
+            Fetches and returns an email by its ID.
+            Args: m_id (str): The email ID to find.
+            Returns:Mail/Personal/Confidential or None if not found.
+        """
         m_id = str(m_id)
         for mail in self._mailbox:
             if mail.m_id == m_id:
@@ -52,7 +64,11 @@ class MailboxAgent:
     # FA.3
     #
     def del_email(self, m_id):
-        """  """
+        """
+            Moves the email to the bin by changing its tag and adding a deletion date.
+            Args:m_id (str): The email ID to delete.
+            [OOP CONCEPT: Encapsulation] - Only agent can change tag.
+        """
         mail = self.get_email(m_id)
         if mail:
             mail.tag = 'bin'
@@ -60,7 +76,11 @@ class MailboxAgent:
             print(f"Email {m_id} moved to bin on {mail._deletion_date.strftime('%y-%m-%d')} and will be deleted permanently after 10 days")
             mail.show_email()
 
-    def cleanup_bin(self):      #oops
+    def cleanup_bin(self):      #oop
+        """
+            Removes emails from bin if more than 10 days have passed since their deletion date.
+            [Learning Source]: Timedelta and datetime learnt from Python docs.
+        """
         today = datetime.datetime.today()
         bin_emails = [mail for mail in self._mailbox if mail.tag == 'bin']
 
@@ -72,7 +92,9 @@ class MailboxAgent:
     # FA.4
     #
     def filter(self, frm):
-        """  """
+        """
+        Finds and prints emails matching a partial/full sender string.
+        """
         found_email = [mail for mail in self._mailbox if frm in mail.frm]
 
         print(f"Found {len(found_email)} emails with {frm}") #dis
@@ -86,7 +108,17 @@ class MailboxAgent:
     # FA.5
     #
     def sort_date(self):
-        """  """
+        """
+        Sorts the mailbox in place by email date.
+        """
+        def parse_date(d):
+            try:
+                day, month, year = map(int, d.split('/'))
+                return datetime.date(year, month, day)
+            except:
+                print(f"Invalid date format in mailbox: {d}")
+                return datetime.date.max
+
         self._mailbox.sort(key=lambda mail: mail.date)
         print("Mailbox sorted by date {_date}.}")
 
@@ -95,7 +127,9 @@ class MailboxAgent:
     # FB.1
     #
     def show_emails(self):
-        """  details of personal email """
+        """
+        Prints a formatted table listing of all emails in the mailbox.
+        """
         print(f"{'ID':<5} | {'From':<20} | {'To':<20} | {'Date':<10}  | {'Subject':<15} | {'Tag':<10} |  {'Read':<15} | {'Flag':<15}")
         print("-" * 150)
         for mail in self._mailbox:
@@ -106,7 +140,11 @@ class MailboxAgent:
     # FB.2
     #
     def mv_email(self, m_id, tag):
-        """  """
+        """
+        Changes the tag (folder) of the specified email and updates its type if switching
+        to/from confidential. Handles encryption and decryption for conf.
+        [OOP CONCEPT: Polymorphism] - Converts and replaces Mail subtype as necessary.
+        """
         mail = self.get_email(m_id)
         if not mail:
             print(f"Email {m_id} not found.")
@@ -144,7 +182,10 @@ class MailboxAgent:
     #
 
     def mark(self, m_id, m_type):
-        """  """
+        """
+        Mark a particular email as read or flagged.
+        [OOP CONCEPT: Encapsulation] - Only agent sets read/flag.
+        """
         mail = self.get_email(m_id)
 
         if m_type == 'read':
@@ -158,7 +199,8 @@ class MailboxAgent:
             print("invalid mark type.")
             return
 
-    def mark_all_as_read(self):      #oops
+    def mark_all_as_read(self):   #oops
+        #Marks all emails in the mailbox as read
         for mail in self._mailbox:
             mail.read = True
         print(f"All emails are marked as read.")
@@ -167,7 +209,9 @@ class MailboxAgent:
     # FB.4
     #
     def find(self, date):
-        """  """
+        """
+        Finds all emails received on a given date and prints them.
+        """
 
         found_emails = []
         date = date.strip()
@@ -192,14 +236,18 @@ class MailboxAgent:
     # FB.5
     #
     def sort_from(self):
-        """  """
+        #Sorts the mailbox in place by email date.
         self._mailbox.sort(key=lambda mail: mail.frm)
         print("Mailbox sorted.")
 
 # FEATURE 6 (Partners A and B)
     #
     def add_email(self, frm, to, date, subject, tag, body, m_id=None):
-        """  """
+        """
+        Adds a new email to the mailbox, creating the correct email type.
+        [OOP CONCEPT: Polymorphism] - Can create different subclasses of Mail.
+        [Learning Source]: AI/explained decision logic, W3Schools for match/case.
+        """
         # code must generate unique m_id
         next_id = str(len(self._mailbox)) #make unique id
 
@@ -221,3 +269,6 @@ class MailboxAgent:
                 new_mail = Mail(next_id, frm, to, date, subject, tag, body)
                 self._mailbox.append(new_mail)
                 print(f"General email with id {m_id}.")
+
+# Class name and method names follow PEP8. Variable names are snake_case and descriptive.
+
