@@ -126,7 +126,7 @@ class MailboxAgent:
 
         elif old_tag == 'conf' and tag != 'conf':
                 #
-            decrypted_body = mail.decrypt_body() #
+            decrypted_body = mail.decrypt_bodyz() #
             if tag == 'prsnl':
                 new_mail = Personal(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, decrypted_body)
             else:
@@ -152,7 +152,7 @@ class MailboxAgent:
             print(f"Email {m_id} marked as read.")
 
         elif m_type == 'flagged':
-            mail.flagged = True
+            mail.flag = True
             print(f"Email {m_id} marked as flagged.")
         else:
             print("invalid mark type.")

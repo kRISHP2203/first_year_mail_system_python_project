@@ -34,7 +34,7 @@ def gen_emails():
     """ generates list of email strings
         :rtype: list """
     msgs, msg_id = [], 0
-    for i in range(14):     # sent 40 email
+    for _ in range(14):     # sent 40 email
         msg = ''
         for j in range(30): # to 30 destinations each
             msg += f"ID:{str(msg_id)}"+"\n"

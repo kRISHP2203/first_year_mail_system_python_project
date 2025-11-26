@@ -26,23 +26,23 @@ class Confidential(Mail):
 
 
     def encrypt(self):
-
         def rot13(text):
             return text.translate(
                     str.maketrans(
-                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345abcdefghijklmnopqrstuvwxyz",
-                        "NOPQRSTUVWXYZABCDEFGHIJKLM09876nopqrstuvwxyzabcdefghijklm"))
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+                        "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"))
 
         self._body = rot13(self._body)
+
 
     def decrypt(self):
         def rot13(text):
             return text.translate(
-                    str.maketrans(
-                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234abcdefghijklmnopqrstuvwxyz",
-                        "NOPQRSTUVWXYZABCDEFGHIJKLM09876nopqrstuvwxyzabcdefghijklm"))
-        return rot13(self._body)
+                str.maketrans(
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+                    "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"))
 
+        return self.rot13(self._body)
 
     # FA.5.c
     def show_email(self):
