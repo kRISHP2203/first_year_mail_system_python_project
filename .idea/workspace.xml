@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3670ad6-ae3c-4afc-b913-d2d75dec9f4c" name="Changes" comment="push">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Confidential.py" beforeDir="false" afterPath="$PROJECT_DIR$/Confidential.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MailboxAgent.py" beforeDir="false" afterPath="$PROJECT_DIR$/MailboxAgent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal.py" afterDir="false" />
-    </list>
+    <list default="true" id="b3670ad6-ae3c-4afc-b913-d2d75dec9f4c" name="Changes" comment="push" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
@@ -130,7 +129,7 @@
       <workItem from="1763676700211" duration="12864000" />
       <workItem from="1763737799723" duration="3355000" />
       <workItem from="1763744637687" duration="3822000" />
-      <workItem from="1764077096560" duration="21604000" />
+      <workItem from="1764077096560" duration="21987000" />
     </task>
     <task id="LOCAL-00001" summary="push">
       <option name="closed" value="true" />
@@ -180,16 +179,45 @@
       <option name="project" value="LOCAL" />
       <updated>1764155787932</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="push">
+      <option name="closed" value="true" />
+      <created>1764160076186</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764160076186</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="cf23d63f-6202-441f-a0ba-21b0d119e62c" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="TEXT_FILTER_SETTINGS">
+                <TextFilterSettings>
+                  <option name="MATCH_CASE" value="true" />
+                </TextFilterSettings>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="cf23d63f-6202-441f-a0ba-21b0d119e62c">
           <value>
             <State>
               <option name="CUSTOM_BOOLEAN_PROPERTIES">

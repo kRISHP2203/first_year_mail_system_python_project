@@ -142,6 +142,7 @@ class MailboxAgent:
 
     # FB.3
     #
+
     def mark(self, m_id, m_type):
         """  """
         mail = self.get_email(m_id)

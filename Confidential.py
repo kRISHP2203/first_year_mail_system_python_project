@@ -23,6 +23,8 @@ class Confidential(Mail):
 
     # FA.5.b
     #
+
+
     def encrypt(self):
 
         def rot13(text):

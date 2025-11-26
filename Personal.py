@@ -38,6 +38,7 @@ class Personal(Mail):
         # 4. Calculate stat
         s """
 
+
         uid = self._frm.split('@')[0]
         self._body = self._body.replace("Body", uid)
 

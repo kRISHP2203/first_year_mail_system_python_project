@@ -16,7 +16,6 @@
 from MailboxAgent import *
 import random, string
 
-
 # gen_bdy Generates random text for the email body
 # DO NOT MODIFY
 def gen_bdy():
