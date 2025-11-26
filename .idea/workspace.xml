@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3670ad6-ae3c-4afc-b913-d2d75dec9f4c" name="Changes" comment="push">
-      <change beforePath="$PROJECT_DIR$/Interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Interpreter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MailboxAgent.py" beforeDir="false" afterPath="$PROJECT_DIR$/MailboxAgent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Personal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Personal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +126,7 @@
       <workItem from="1763676700211" duration="12864000" />
       <workItem from="1763737799723" duration="3355000" />
       <workItem from="1763744637687" duration="3822000" />
-      <workItem from="1764077096560" duration="17105000" />
+      <workItem from="1764077096560" duration="18338000" />
     </task>
     <task id="LOCAL-00001" summary="push">
       <option name="closed" value="true" />
@@ -162,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764097408667</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="push">
+      <option name="closed" value="true" />
+      <created>1764098227392</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764098227392</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
