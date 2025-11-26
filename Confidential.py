@@ -24,23 +24,22 @@ class Confidential(Mail):
     # FA.5.b
     #
     def encrypt(self):
-            """ Encrypts the email body using a simple cipher (for example ROT13 encryption).
-            This method transforms the body content to protect sensitive information.
-            """
-            def rot13(text):
-                return text.translate(
+
+        def rot13(text):
+            return text.translate(
                     str.maketrans(
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345abcdefghijklmnopqrstuvwxyz",
                         "NOPQRSTUVWXYZABCDEFGHIJKLM09876nopqrstuvwxyzabcdefghijklm"))
 
-            self._body = rot13(self._body)
+        self._body = rot13(self._body)
+
     def decrypt(self):
-            def rot13(text):
-                return text.translate(
+        def rot13(text):
+            return text.translate(
                     str.maketrans(
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234abcdefghijklmnopqrstuvwxyz",
                         "NOPQRSTUVWXYZABCDEFGHIJKLM09876nopqrstuvwxyzabcdefghijklm"))
-            return rot13(self._body)
+        return rot13(self._body)
 
 
     # FA.5.c

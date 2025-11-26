@@ -39,7 +39,6 @@ class Personal(Mail):
         s """
 
         uid = self._frm.split('@')[0]
-
         self._body = self._body.replace("Body", uid)
 
         words = self._body.split()

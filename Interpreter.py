@@ -121,6 +121,7 @@ def loop(before_body=None):
                     mba.filter(args[0])
                 else:
                     print("Usage: flt <frm>")
+
             case 'fnd':
                 # example command prompt:
                 # fnd 12/3/2025
@@ -128,6 +129,7 @@ def loop(before_body=None):
                     mba.find(args[0])
                 else:
                     print("Usage: fnd <date>")
+
             case 'get' :                # retrieve and display email Mail object given email ID
                 # example command prompt:
                 # get 10
@@ -137,15 +139,20 @@ def loop(before_body=None):
                         mail.show_email()
                 else:
                     print("Usage: get <m_id>")
+
             case 'lst' :                # display entire mailbox
                 # example command prompt:
                 # lst
                 mba.show_emails()
+
             case 'mrkr':
                 # example command prompt:
                 # mrkr 10
                 if len(args) == 1:
                     mba.mark(args[0], 'read')
+                    mail = mba.get_email(args[0])
+                    if mail:
+                        mail.show_email()
                 else:
                     print("Usage: mrkr <m_id>")
 
@@ -157,6 +164,7 @@ def loop(before_body=None):
                 # mrkf 10
                 if len(args) == 1:
                     mba.mark(args[0], 'flagged')
+
                 else:
                     print("Usage: mrkf <m_id> ")
 

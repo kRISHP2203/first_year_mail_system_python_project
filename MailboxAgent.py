@@ -127,7 +127,6 @@ class MailboxAgent:
         elif old_tag == 'conf' and tag != 'conf':
                 #
             decrypted_body = mail.decrypt_body() #
-
             if tag == 'prsnl':
                 new_mail = Personal(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, decrypted_body)
             else:
@@ -158,7 +157,7 @@ class MailboxAgent:
             print("invalid mark type.")
             return
 
-    def mark_all_as_read(self):
+    def mark_all_as_read(self):      #oops
         for mail in self._mailbox:
             mail.read = True
         print(f"All emails are marked as read.")
@@ -169,9 +168,7 @@ class MailboxAgent:
     def find(self, date):
         """  """
 
-
         found_emails = []
-
         date = date.strip()
         #sdbvjhsb
         for mail in self._mailbox:
@@ -203,7 +200,7 @@ class MailboxAgent:
     def add_email(self, frm, to, date, subject, tag, body, m_id=None):
         """  """
         # code must generate unique m_id
-        next_id = str (len(self._mailbox)) #make unique id
+        next_id = str(len(self._mailbox)) #make unique id
 
         match tag.lower():
             # FA.6
@@ -219,7 +216,7 @@ class MailboxAgent:
                 self._mailbox.append(new_mail)
                 print(f"Personal email added with id {m_id}.")
             # FA&B.6
-            case _:          # executed when tag is neither 'conf' nor 'prsnl'
+            case 'pri':          # executed when tag is neither 'conf' nor 'prsnl'
                 new_mail = Mail(next_id, frm, to, date, subject, tag, body)
                 self._mailbox.append(new_mail)
                 print(f"General email with id {m_id}.")
