@@ -7,7 +7,7 @@
 ### Partner A:                                                                                ###
 ###            Parthilkumar Miteshbhai Patel, 001485972                                       ###
 ### Partner B:                                                                                ###
-###            Krish Thakorbhai Patel, 0001495242                                             ###
+###            Krish Thakorbhai Patel, 001495242                                             ###
 #################################################################################################
 
 
@@ -151,28 +151,54 @@ class MailboxAgent:
             return
 
         old_tag = mail.tag
+        idx = self._mailbox.index(mail)
 
-            #move to conf
+            #move to confidential
 
         if tag == 'conf' and old_tag != 'conf':
-            new_mail = Confidential(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, mail.body)
+            new_mail = Confidential(
+                mail.m_id,
+                mail.frm,
+                mail.to,
+                mail.date,
+                mail.subject,
+                tag,
+                mail.body)
 
-            index = self._mailbox.index(mail)
-            self._mailbox[index] = new_mail
+            self._mailbox[idx] = new_mail
             print(f"Email {m_id} moved to confidential files '{tag}'.")
             new_mail.show_email()
 
         elif old_tag == 'conf' and tag != 'conf':
-                #
-            decrypted_body = mail.decrypt_bodyz() #
+                #move out to confidential
+
+            decrypted_body = mail.decrypt() #
             if tag == 'prsnl':
-                new_mail = Personal(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, decrypted_body)
+                new_mail = Personal(
+                    mail.m_id,
+                    mail.frm,
+                    mail.to,
+                    mail.date,
+                    mail.subject,
+                    tag,
+                    decrypted_body
+                )
             else:
-                new_mail = Mail(mail.m_id, mail.frm, mail.to, mail.date, mail.subject, mail.tag, decrypted_body)
-            index = self._mailbox.index(mail)
-            self._mailbox[index] = new_mail
-            print(f"Email {m_id} moved fromn confidentail files to '{tag}'.")
+                new_mail = Mail(
+                    mail.m_id,
+                    mail.frm,
+                    mail.to,
+                    mail.date,
+                    mail.subject,
+                    tag,
+                    decrypted_body
+                )
+
+            self._mailbox[idx] = new_mail
+            print(f"Email {m_id} moved fromn confidential files to '{tag}'.")
             new_mail.show_email()
+
+        #simple move no type change
         else:
                 mail.tag = tag
                 print(f"Email {m_id} moved to folder '{tag}'.")

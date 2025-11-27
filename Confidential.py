@@ -38,12 +38,14 @@ class Confidential(Mail):
     # [OOP CONCEPT: Encapsulation]
 
     def encrypt(self):
+        """ ROT13 encryption/decryption utility method """
         def rot13(text):
             return text.translate(
                     str.maketrans(
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-                        "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"))
-
+                        "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"
+                    )
+            )
         self._body = rot13(self._body)
 
 
@@ -53,8 +55,9 @@ class Confidential(Mail):
             return text.translate(
                 str.maketrans(
                     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-                    "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"))
-
+                    "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"
+                )
+            )
         return self.rot13(self._body)
 
     # FA.5.c
